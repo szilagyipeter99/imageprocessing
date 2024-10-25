@@ -3,8 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Open the image using PIL
-# image = Image.open("path-to-resources/boglarka.jpg")
-image = Image.open("boglarka.jpg").convert("RGB")
+image = Image.open("path-to-resources/boglarka.jpg").convert("RGB")
 
 # Convert image to a NumPy array
 data = np.array(image, dtype=np.uint8)

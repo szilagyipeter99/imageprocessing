@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from timeit import default_timer as timer
 
+# Open the image using PIL
 image = Image.open("path-to-resources/boglarka.jpg").convert("L")
 
 # Convert image to a NumPy array

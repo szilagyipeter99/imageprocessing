@@ -2,7 +2,7 @@ from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Open the image using PIL
+# Open the image using PIL and ensure the correct (RGB) color mode
 image = Image.open("path-to-resources/boglarka.jpg").convert("RGB")
 
 # Convert image to a NumPy array

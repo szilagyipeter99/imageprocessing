@@ -6,7 +6,7 @@ import os
 # Folder containing the image sequence
 folder_path = "path-to-resources/wrench-sequence"
 
-# Set threshold value for binarization
+# Set threshold value
 threshold = 175
 
 # Loop through each image in the folder

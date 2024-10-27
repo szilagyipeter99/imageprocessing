@@ -24,5 +24,5 @@ final_image = np.uint8(data)
 
 # Display the image
 plt.imshow(final_image)
-plt.axis('off')  # Hide the axis
+plt.axis('off')
 plt.show()

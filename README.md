@@ -5,5 +5,6 @@ Repository for the examples discussed in the Image Processing practices. Folders
 - NumPy
 - Matplotlib
 - PIL (Pillow)
+- Keras (+ TensorFlow)
 
 ### Links for the courses: [HU](https://szilagyipeti.hu/imgproc/content.html) | [EN](https://szilagyipeti.hu/imgproc/content-en.html)

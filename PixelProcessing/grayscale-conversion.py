@@ -17,5 +17,5 @@ final_image = np.dot(data, conv_arr).astype(np.uint8)
 
 # Display the image
 plt.imshow(final_image, cmap="gray")
-plt.axis('off')  # Hide the axis
+plt.axis('off')
 plt.show()

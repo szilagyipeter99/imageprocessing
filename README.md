@@ -12,7 +12,7 @@ Throughout the examples, we use several Python libraries that extend the functio
 
 ### Recommended folder structure:
 
-Python files can be stored in folders grouped by the lecture topics, like in this repository. However, for beginners it is recommended to have all the example codes in the root of the project, with a single folder for all the resources.
+Python files can be stored in folders grouped by lecture topics, as organized in this repository. However, for beginners, it is often recommended to place all example code files directly in the root of the project. This way, the project structure is simplified, with only a single folder dedicated to all resources (images, sequences, etc.), making navigation easier.
 
 ```bash
 improc-folder
@@ -25,4 +25,4 @@ improc-folder
 └── ...
 ```
 
-### Links for the courses: [HU](https://szilagyipeti.hu/imgproc/content.html) | [EN](https://szilagyipeti.hu/imgproc/content-en.html)
+### Course website: [HU](https://szilagyipeti.hu/imgproc/content.html) | [EN](https://szilagyipeti.hu/imgproc/content-en.html)

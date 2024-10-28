@@ -9,7 +9,7 @@ Repository for the examples discussed in the Image Processing practices. Folders
 
 ### Recommended folder structure:
 
-Python files can be stored in folders grouped by the lecture topics, like in this repository. However, for beginners it is recommended to have all the example codes in the root of the project, as this is an easier way to handle codes.
+Python files can be stored in folders grouped by the lecture topics, like in this repository. However, for beginners it is recommended to have all the example codes in the root of the project, with a single folder for all the resources.
 
 ```bash
 improc-folder

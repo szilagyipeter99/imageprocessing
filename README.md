@@ -7,4 +7,17 @@ Repository for the examples discussed in the Image Processing practices. Folders
 - PIL (Pillow)
 - Keras (+ TensorFlow)
 
+### Suggestion for folder structure:
+
+```bash
+improc-folder
+├── resources-folder
+│   ├── resource1.jpg
+│   ├── resource2.png
+│   └── ...
+├── code1.py
+├── code2.py
+└── ...
+```
+
 ### Links for the courses: [HU](https://szilagyipeti.hu/imgproc/content.html) | [EN](https://szilagyipeti.hu/imgproc/content-en.html)

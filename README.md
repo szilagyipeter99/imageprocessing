@@ -1,5 +1,5 @@
 # Image Processing
-Repository for the examples discussed in the Image Processing practices. Folders here only contain the source codes and resources (images, videos). Explanations and figures are available on the course website. Multiple libraries are used to extend the functionality of vanilla Python, making it easier to perform calculations, import and manipulate images. 
+Repository for the examples discussed in the Image Processing practices. Folders here only contain the source codes and resources (images, videos). Explanations and figures are available on the course website. Multiple libraries are used to extend the functionality of vanilla Python, making it easier to perform calculations, import and manipulate images. Later in the semester the Keras library will help us build ML models.
 
 ### The following libraries are used:
 - NumPy

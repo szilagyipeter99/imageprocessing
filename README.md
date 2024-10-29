@@ -1,6 +1,6 @@
-# Image Processing
+# Image processing
 
-This repository contains the examples discussed in the Image Processing practices. Each folder includes the source code for these exercises. Explanations and figures are available on the course website.
+This repository contains the examples discussed in the Image processing practices. Each folder includes the source code for these exercises. Explanations and figures are available on the course website.
 
 Throughout the examples, we use several Python libraries that extend the functionality of vanilla Python, simplifying calculations and enabling us to import and manipulate images effectively. Later in the semester, we’ll also use the Keras library to build machine learning models.
 

@@ -31,7 +31,7 @@ for i, img_path in enumerate(test_image_paths[:10]):
     test_image, test_image_prep = preprocess_image(img_path)
     prediction = model.predict(test_image_prep)[0][0]
     predicted_class = class_2 if prediction > 0.5 else class_1
-    confidence = prediction if predicted_class == class_2 else 1 - prediction
+    confidence = prediction if prediction > 0.5 else 1 - prediction
     plt.subplot(2, 5, i + 1)
     plt.imshow(test_image, cmap="gray")
     plt.axis('off')

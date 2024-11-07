@@ -34,14 +34,20 @@ for filename in sorted(os.listdir(folder_path)):
         x_cntr = np.matmul(data, x_range).sum() / area
         y_cntr = np.matmul(data.T, y_range).sum() / area
 
-        # Calculate a, b, c
-        a = np.matmul(data, np.square(x_range)).sum() - np.square(x_cntr) * area
-        b = 2 * (np.matmul(np.matmul(data, x_range), y_range).sum() - x_cntr * y_cntr * area)
-        c = np.matmul(data.T, np.square(y_range)).sum() - np.square(y_cntr) * area
-
-        # Orientation in radians
-        orientation = np.arctan2(b, a - c) / 2
-        print(np.rad2deg(orientation))
+        # --- PCA (Principal Component Analysis) --- 
+        # Extract foreground pixel coordinates
+        y, x = np.nonzero(data)
+        coords = np.column_stack((x, y))
+        # Centered array
+        cntr_coords = coords - (x_cntr, y_cntr)
+        # Covariance matrix
+        cov_matrix = np.cov(cntr_coords, rowvar=False)
+        # Eigen value decomposition (EVD) to find the principal components
+        eig_vals, eig_vecs = np.linalg.eigh(cov_matrix)
+        # Eigenvector corresponding to the largest eigenvalue
+        pr_eig_vec = eig_vecs[:, np.argmax(eig_vals)]
+        # Orientation angle in radians
+        orientation = np.arctan2(pr_eig_vec[1], pr_eig_vec[0])
 
         # Start and end point for the orientation line
         half_len = 300
@@ -49,7 +55,7 @@ for filename in sorted(os.listdir(folder_path)):
         y_line = [y_cntr - half_len * np.sin(orientation), y_cntr + half_len  * np.sin(orientation)]
 
         # Display the image
-        plt.figure(1); plt.clf()
+        plt.figure(1); plt.clf() # This is needed to refresh the image
         plt.imshow(image, cmap="gray")
         plt.plot(x_line, y_line, color="red", linewidth=3)  # Draw a red line on the image
         plt.plot(x_cntr, y_cntr, "og", markersize=5)  # Mark center with green circle

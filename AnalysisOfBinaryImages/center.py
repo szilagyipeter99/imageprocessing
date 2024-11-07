@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Open the image and convert to grayscale
-image = Image.open("resources/wrench.png").convert("L")
+image = Image.open("path-to-resources/wrench.png").convert("L")
 
 # Convert image to a NumPy array
 data = np.array(image, dtype=np.uint8)

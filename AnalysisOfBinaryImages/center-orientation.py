@@ -12,7 +12,7 @@ data = np.array(image, dtype=np.uint8)
 threshold = 135
 data = np.where(data > threshold, 255, 0)
 
-# Convert image from {0, 255} to {0, 1} for center calculation
+# Convert image from {0, 255} to {0, 1} (Normalize)
 data = data / 255
 
 # Helper arrays to calculate the center
@@ -24,16 +24,22 @@ area = data.sum()
 x_cntr = np.matmul(data, x_range).sum() / area
 y_cntr = np.matmul(data.T, y_range).sum() / area
 
-# Calculate a, b, c
-a = np.matmul(data, np.square(x_range)).sum() - np.square(x_cntr) * area
-b = 2 * (np.matmul(np.matmul(data, x_range), y_range).sum() - x_cntr * y_cntr * area)
-c = np.matmul(data.T, np.square(y_range)).sum() - np.square(y_cntr) * area
+# --- PCA (Principal Component Analysis) --- 
+# Extract foreground pixel coordinates
+y, x = np.nonzero(data)
+coords = np.column_stack((x, y))
+# Centered array
+cntr_coords = coords - (x_cntr, y_cntr)
+# Covariance matrix
+cov_matrix = np.cov(cntr_coords, rowvar=False)
+# Eigen value decomposition (EVD) to find the principal components
+eig_vals, eig_vecs = np.linalg.eigh(cov_matrix)
+# Eigenvector corresponding to the largest eigenvalue
+pr_eig_vec = eig_vecs[:, np.argmax(eig_vals)]
+# Orientation angle in radians
+orientation = np.arctan2(pr_eig_vec[1], pr_eig_vec[0])
 
-# Orientation in radians
-orientation = np.arctan2(b, a - c) / 2
-print(np.rad2deg(orientation))
-
-# Start and end point for the orientation line
+# Start and End point for the orientation line
 half_len = 500
 x_line = [x_cntr - half_len * np.cos(orientation), x_cntr + half_len * np.cos(orientation)]
 y_line = [y_cntr - half_len * np.sin(orientation), y_cntr + half_len  * np.sin(orientation)]

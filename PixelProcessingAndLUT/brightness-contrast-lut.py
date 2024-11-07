@@ -15,7 +15,7 @@ brightness = 25  # [-127;127] where 0 means unchanged
 contrast = 75    # [-127;127] where 0 means unchanged
 
 # Build a grayscale LUT
-myLUT=np.zeros(256,dtype=np.uint8)
+myLUT = np.zeros(256, dtype = np.uint8)
 for li in range(255):
     myLUT[li]= np.clip(li * (contrast / 127 + 1) - contrast + brightness, 0, 255)
 

@@ -34,7 +34,12 @@ perspective_matrix = compute_perspective_matrix(input_points, output_points)
 matrix_for_pil = perspective_matrix.flatten()[:8]
 
 # Apply the transform to the original image
-transformed_image = image.transform(image.size, Image.Transform.PERSPECTIVE, matrix_for_pil, resample = Image.Resampling.BICUBIC)
+transformed_image = image.transform(
+    image.size, 
+    Image.Transform.PERSPECTIVE, 
+    matrix_for_pil, 
+    resample = Image.Resampling.BICUBIC
+    )
 
 # Display images
 fig, ax = plt.subplots(1, 2, figsize=(12, 6))

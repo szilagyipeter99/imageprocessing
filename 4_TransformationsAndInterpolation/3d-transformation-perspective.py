@@ -20,7 +20,7 @@ def compute_perspective_matrix(inp_pts, out_pts):
         A.append([0, 0, 0, x, y, 1, -v * x, -v * y])
         b.append(u)
         b.append(v)
-    # Solve the equation system
+    # Solve the system of equations
     h = np.linalg.solve(A, b)
     # Add 1 as the last element and reshape into a 3x3 matrix
     # (Reshape is unneccessary in this exact application, because it is flattened in the next step)
@@ -38,8 +38,7 @@ transformed_image = image.transform(
     image.size, 
     Image.Transform.PERSPECTIVE, 
     matrix_for_pil, 
-    resample = Image.Resampling.BICUBIC
-    )
+    resample = Image.Resampling.BICUBIC)
 
 # Display images
 fig, ax = plt.subplots(1, 2, figsize=(12, 6))

@@ -2,7 +2,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 
 # Open the image using PIL
-image = Image.open("resources/boglarka.jpg")
+image = Image.open("path-to-resources/boglarka.jpg")
 
 # Resampling filter options are: 'NEAREST', 'BILINEAR', 'BICUBIC' and more
 # Press 'Go to Definition' for more info about the function

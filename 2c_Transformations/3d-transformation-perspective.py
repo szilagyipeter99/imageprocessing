@@ -3,19 +3,19 @@ from PIL import Image
 import matplotlib.pyplot as plt
 
 # Open the image using PIL
-image = Image.open("resources/wrench.png")
+image = Image.open("path-to-resources/notebook.JPG")
 
 # Define input and output points (top-left, top-right, bottom-left, bottom-right)
-input_points = np.float32([[50, 50], [200, 50], [50, 200], [200, 200]])
-output_points = np.float32([[10, 100], [180, 20], [30, 250], [200, 220]])
+input_points = np.float32([[452, 239], [1072, 304], [260, 583], [1052, 696]])
+output_points = np.float32([[50, 50], [1438, 50], [50, 942], [1438, 942]])
 
 def compute_perspective_matrix(inp_pts, out_pts):
     A = []
     b = []
     # Populate the two lists (arrays) with values
     for i in range(4):
-        x, y = inp_pts[i][0], inp_pts[i][1]
-        u, v = out_pts[i][0], out_pts[i][1]
+        x, y = out_pts[i][0], out_pts[i][1]
+        u, v = inp_pts[i][0], inp_pts[i][1]
         A.append([x, y, 1, 0, 0, 0, -u * x, -u * y])
         A.append([0, 0, 0, x, y, 1, -v * x, -v * y])
         b.append(u)

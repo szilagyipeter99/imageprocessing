@@ -8,6 +8,7 @@ Throughout the examples, we use several Python libraries that extend the functio
 - NumPy
 - Matplotlib
 - PIL (Pillow)
+- scikit-image
 - SciPy
 - Keras (+ TensorFlow)
 

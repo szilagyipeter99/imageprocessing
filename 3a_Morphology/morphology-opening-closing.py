@@ -21,9 +21,9 @@ custom_footprint = np.array([[1, 1, 1, 1, 1, 1, 1],
                              [1, 1, 1, 1, 1, 1, 1],
                              [1, 1, 1, 1, 1, 1, 1]], dtype=np.uint8)
 
-# Set pixels to the minimum in their neighborhood
+# Perform an erosion followed by a dilation 
 opened_image = opening(data, custom_footprint)
-# Set pixels to the maximum in their neighborhood
+# Perform a dilation followed by an erosion
 closed_image = closing(data, custom_footprint)
 
 # Display images

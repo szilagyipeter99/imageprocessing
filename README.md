@@ -27,6 +27,6 @@ improc-folder
 └── ...
 ```
 
-### Course website: [HU](https://szilagyipeti.hu/imgproc/content.html) | [EN](https://szilagyipeti.hu/imgproc/content-en.html)
+### For your use and inspiration
 
 All materials are designed for Mechatronics Engineering students at the University of Debrecen and were created by Péter Szilágyi. Feel free to share, copy, or modify any part of the materials to your heart's content.

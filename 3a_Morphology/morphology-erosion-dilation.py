@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from skimage.morphology import erosion, dilation
 
 # Open the image using PIL
-image = Image.open("resources/gears.jpeg").convert("L")
+image = Image.open("path-to-resources/gears.jpeg").convert("L")
 
 # Convert image to a NumPy array
 data = np.array(image, dtype=np.uint8)

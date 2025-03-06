@@ -1,32 +1,32 @@
-import cv2 as cv
+from PIL import Image
 import numpy as np
+import matplotlib.pyplot as plt
 
+# Open the image using PIL
 # Image source: Case courtesy of Tariq Walizai, Radiopaedia.org, rID: 184833
 # https://radiopaedia.org/cases/184833?lang=us
-cv_image = cv.imread("segmentation/chest_tube.jpg", 0)
-assert cv_image is not None, "File could not be read"
+image = Image.open("path-to-resources/chest-tube.jpg").convert("RGB")
 
-data = np.asarray(cv_image)
-print(data.shape) # (height, width, channels)
+# Convert image to a NumPy array
+data = np.array(image, dtype=np.uint8)
+# Create a grayscale version, as well
+grayscale_data = np.array(image.convert("L"), dtype=np.uint8)
 
 seed_points = [[135,235],
-                [360,215],
-                [115,335]] # (X,Y) coordinates of points
+               [360,215],
+               [115,335]] # (X,Y) coordinates of points
 
 color_values = [(255, 0, 0),
                 (0, 255, 0),
-                (0, 0, 255)] # (B, G, R)
+                (0, 0, 255)] # (R, G, B)
 
-# Mark the seed points with a red dot
-color_image = cv.cvtColor(cv_image,cv.COLOR_GRAY2RGB)
-for p in seed_points: 
-    color_image[p[1] - 5 : p[1] + 5, p[0] - 5 : p[0] + 5] = (0, 0, 255) # (B, G, R)
-# Empty matrix for tracking visited points
-# Double parentheses (())
+# Create empty matrix to track visited points
 visited_points = np.zeros((data.shape[1], data.shape[0]), dtype=np.uint8)
 
-temp_image = cv.cvtColor(cv_image,cv.COLOR_GRAY2RGB)
-tolerance = 2 # Percent difference
+segmented_image = data.copy()
+
+# Max. difference between pixels (%)
+tolerance = 2
 
 for p in range(len(seed_points)):
     temp_list = [seed_points[p]]
@@ -34,14 +34,14 @@ for p in range(len(seed_points)):
         curr_point = temp_list.pop() # Read then remove the last element of the list
         x = curr_point[0]
         y = curr_point[1]
-        im_val = data[y][x] # Pixel value at the current point
+        im_val = grayscale_data[y][x] # Pixel value at the current point
         visited_points[y][x] = 1 # Mark current point white
-        temp_image[y][x] = color_values[p]
-        # Visit every neighbor (8-connectivity)
-        neighbors_8c = [(x-1, y-1), (x-1, y+1), (x+1, y-1), (x+1, y+1), (x, y-1), (x, y+1), (x-1, y), (x+1, y)]
-        for i, j in neighbors_8c:
+        segmented_image[y][x] = color_values[p]
+        # Visit every neighbor (8c)
+        neighbors = [(x-1, y-1), (x-1, y+1), (x+1, y-1), (x+1, y+1), (x, y-1), (x, y+1), (x-1, y), (x+1, y)]
+        for i, j in neighbors:
             if (0 <= j < data.shape[0] and 0 <= i < data.shape[1]): # The X and Y index are inside the image
-                neighbor_val = data[j][i]
+                neighbor_val = grayscale_data[j][i]
                 # Change the data type for proper subtraction
                 neighbor_val = neighbor_val.astype(np.int16)
                 # The point has not been visited and is similar to its neighbor
@@ -49,7 +49,12 @@ for p in range(len(seed_points)):
                     # LIFO method
                     temp_list.append([i,j])
 
-segmented_image = temp_image
-
-cv.imshow("Window title", segmented_image)
-k = cv.waitKey(0) # Wait for a keystroke in the windows     
+# Display the image
+plt.imshow(segmented_image)
+# Mark seed points
+plt.plot(seed_points[0][0], seed_points[0][1], "ow", markersize=5)
+plt.plot(seed_points[1][0], seed_points[1][1], "ow", markersize=5)
+plt.plot(seed_points[2][0], seed_points[2][1], "ow", markersize=5)
+plt.title("Center point")
+plt.axis('off')
+plt.show()   

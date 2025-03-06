@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from scipy.signal import convolve2d
 
 # Open the image using PIL
-image = Image.open("path-to-resources/boglarka_low.jpg")
+image = Image.open("path-to-resources/boglarka-low.jpg")
 
 # Convert image to a NumPy array
 data = np.array(image, dtype=np.uint8)

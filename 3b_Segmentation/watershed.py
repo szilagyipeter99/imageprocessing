@@ -1,4 +1,4 @@
-// DO NOT USE THIS CODE, IT IS NOT FINAL
+# DO NOT USE THIS CODE, IT IS NOT FINAL
 
 import numpy as np
 import matplotlib.pyplot as plt

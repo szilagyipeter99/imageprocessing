@@ -1,3 +1,5 @@
+# DO NOT USE THIS CODE, IT IS NOT FINAL
+
 import sys
 from skimage import io
 from sklearn.cluster import KMeans

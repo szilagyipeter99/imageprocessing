@@ -1,29 +1,34 @@
 # DO NOT USE THIS CODE, IT IS NOT FINAL
 
+from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
+from skimage.morphology import  opening, closing
 from scipy import ndimage as ndi
-
 from skimage.segmentation import watershed
 from skimage.feature import peak_local_max
 
+# Open the image using PIL
+image = Image.open("resources/cards.png").convert("L")
 
-# Generate an initial image with two overlapping circles
-x, y = np.indices((80, 80))
-x1, y1, x2, y2 = 28, 28, 44, 52
-r1, r2 = 16, 20
-mask_circle1 = (x - x1) ** 2 + (y - y1) ** 2 < r1**2
-mask_circle2 = (x - x2) ** 2 + (y - y2) ** 2 < r2**2
-image = np.logical_or(mask_circle1, mask_circle2)
+# Convert image to a NumPy array
+data = np.array(image, dtype=np.uint8)
 
-# Now we want to separate the two objects in image
-# Generate the markers as local maxima of the distance to the background
-distance = ndi.distance_transform_edt(image)
-coords = peak_local_max(distance, footprint=np.ones((3, 3)), labels=image)
+# Apply thresholding
+threshold = 175
+data = np.where(data > threshold, 1, 0)
+
+# Noise removal
+data = opening(data, np.ones((3, 3)))
+data = opening(data, np.ones((3, 3)))
+
+
+distance = ndi.distance_transform_edt(data)
+coords = peak_local_max(distance, footprint=np.ones((5, 5)), labels=data)
 mask = np.zeros(distance.shape, dtype=bool)
 mask[tuple(coords.T)] = True
 markers, _ = ndi.label(mask)
-labels = watershed(-distance, markers, mask=image)
+labels = watershed(-distance, markers, mask = data)
 
 fig, axes = plt.subplots(ncols=3, figsize=(9, 3), sharex=True, sharey=True)
 ax = axes.ravel()

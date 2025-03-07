@@ -1,39 +1,41 @@
-# DO NOT USE THIS CODE, IT IS NOT FINAL
-
-import sys
-from skimage import io
-from sklearn.cluster import KMeans
+from PIL import Image
 import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
 
-# reading filename
+# Open the image using PIL
+image = Image.open("resources/boglarka-low.jpg")
 
-filename = sys.argv[1]
+# Convert image to a NumPy array
+data = np.array(image, dtype=np.uint8)
 
-# reading the image
-image = io.imread(filename)
- 
-# preprocessing
-rows, cols = image.shape[0], image.shape[1]
-image = image.reshape(rows * cols, 3)
+# Get the dimensions of the image
+image_h, image_w, _ = data.shape
 
-# modelling
-print('Compressing...')
-print('Note: This can take a while for a large image file.')
-kMeans = KMeans(n_clusters = 16)
-kMeans.fit(image)
+# Reshape image data for k-means
+pixels = data.reshape(-1, 3)
+# Run the k-means algorithm
+kmeans = KMeans(n_clusters = 10)
+kmeans.fit(pixels)
 
-# getting centers and labels
-centers = np.asarray(kMeans.cluster_centers_, dtype=np.uint8)
-labels = np.asarray(kMeans.labels_, dtype = np.uint8)
-labels = np.reshape(labels, (rows, cols))
-print('Almost done.')
+# Get centers and labels
+centers = np.asarray(kmeans.cluster_centers_, dtype=np.uint8)
+labels = np.asarray(kmeans.labels_, dtype = np.uint8)
+labels = np.reshape(labels, (image_h, image_w))
 
-# reconstructing the image
-newImage = np.zeros((rows, cols, 3), dtype=np.uint8)
-for i in range(rows):
-    for j in range(cols):
-            # assinging every pixel the rgb color of their label's center
+# Reconstruct the image from the labels
+newImage = np.zeros((image_h, image_w, 3), dtype=np.uint8)
+for i in range(image_h):
+    for j in range(image_w):
+            # Assing every pixel the RGB color of their label's center
             newImage[i, j, :] = centers[labels[i, j], :]
-io.imsave(filename.split('.')[0] + '-compressed.png', newImage)
 
-print('Image has been compressed sucessfully.')
+# Display images
+fig, ax = plt.subplots(1, 2, figsize=(12, 6))
+ax[0].imshow(data)
+ax[0].set_title("Original Image")
+ax[0].axis("off")
+ax[1].imshow(newImage)
+ax[1].set_title("Segmented Image")
+ax[1].axis("off")
+plt.show()

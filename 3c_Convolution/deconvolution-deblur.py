@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 from scipy.fft import fft2, ifft2
 
 # Open the image using PIL
-# Source: Seven Digit License Plate Combo's Beginning with "A" Are Overtaking CT Roads — Connecticut by the Numbers
-# https://ctbythenumbers.news/ctnews/seven-digit-license-plate-combos-beginning-with-a-are-overtaking-ct-roads
-image = Image.open("path-to-resources/license-plates.jpg").convert("L")
+# Villanyautó teszt: Hyundai Inster – kisautózni jó! - Villanyautósok
+# https://villanyautosok.hu/2025/02/26/villanyauto-teszt-hyundai-inster-kisautozni-jo
+image = Image.open("path-to-resources/inster.jpeg").convert("L")
 
 # Convert image to a NumPy array
 data = np.array(image, dtype=np.uint8)
@@ -53,7 +53,7 @@ def apply_deconvolution(image, kernel, K=0.01):
     return restored_image
 
 # Create motion blur kernel
-kernel = build_blur_kernel(size = 15, angle = 30, img_shape = data.shape)
+kernel = build_blur_kernel(size = 10, angle = 30, img_shape = data.shape)
 # Apply motion blur using FFT
 blurred_image = apply_blur_fft(image = data, kernel = kernel)
 # Apply deconvolution

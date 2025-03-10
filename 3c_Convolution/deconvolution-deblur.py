@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from scipy.fft import fft2, ifft2
 
 # Open the image using PIL
-image = Image.open("resources/license-plates.jpg").convert("L")
+image = Image.open("path-to-resources/license-plates.jpg").convert("L")
 
 # Convert image to a NumPy array
 data = np.array(image, dtype=np.uint8)

@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 from scipy.fft import fft2, ifft2
 
 # Open the image using PIL
+# Source: Seven Digit License Plate Combo's Beginning with "A" Are Overtaking CT Roads — Connecticut by the Numbers
+# https://ctbythenumbers.news/ctnews/seven-digit-license-plate-combos-beginning-with-a-are-overtaking-ct-roads
 image = Image.open("path-to-resources/license-plates.jpg").convert("L")
 
 # Convert image to a NumPy array

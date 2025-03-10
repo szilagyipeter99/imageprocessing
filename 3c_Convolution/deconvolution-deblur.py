@@ -26,6 +26,7 @@ def build_blur_kernel(size, angle, img_shape):
     normalized_kernel = kernel / kernel.sum()
     return normalized_kernel
 
+# Function to apply convolution in frequency domain
 def apply_blur_fft(image, kernel):
     # Convert the image and the kernel to frequency domain
     fft_image = fft2(image)
@@ -37,6 +38,7 @@ def apply_blur_fft(image, kernel):
     blurred_image = np.clip(blurred_image, 0, 255).astype(np.uint8)
     return blurred_image
 
+# Function to apply deconvolution
 def apply_deconvolution(image, kernel, K=0.01):
     # Convert the image and the kernel to frequency domain
     fft_image = fft2(image)

@@ -1,80 +1,69 @@
-# DO NOT USE THIS CODE, IT IS NOT FINAL
-
-import numpy as np
-from scipy.fft import fft2, ifft2, fftshift
 from PIL import Image
+import numpy as np
 import matplotlib.pyplot as plt
+from scipy.fft import fft2, ifft2
 
-def motion_blur_kernel(size, angle, img_shape):
-    """Generates a motion blur kernel and pads it to the image size."""
+# Open the image using PIL
+image = Image.open("path-to-resources/boglarka-low.jpg").convert("L")
+
+# Convert image to a NumPy array
+data = np.array(image, dtype=np.uint8)
+
+# Function to build a motion blur kernel
+def build_blur_kernel(size, angle, img_shape):
+    # Create empty matrix and calculate its center
     kernel = np.zeros((size, size))
     center = size // 2
-    angle = np.deg2rad(angle)
-
+    # Calculate elements of the kernel matrix
     for i in range(size):
-        x = int(center + (i - center) * np.cos(angle))
-        y = int(center + (i - center) * np.sin(angle))
+        x = int(center + (i - center) * np.cos(np.deg2rad(angle)))
+        y = int(center + (i - center) * np.sin(np.deg2rad(angle)))
         if 0 <= x < size and 0 <= y < size:
             kernel[y, x] = 1
+    # Normalize the kernel
+    normalized_kernel = kernel / kernel.sum()
+    return normalized_kernel
 
-    kernel /= kernel.sum()  # Normalize
+def apply_blur_fft(image, kernel):
+    # Convert the image and the kernel to frequency domain
+    fft_image = fft2(image)
+    fft_kernel = fft2(kernel, s = image.shape)
+    # Perform convolution in frequency domain (multiplication)
+    blurred_image = fft_image * fft_kernel
+    # Convert blurred image back to spatial domain
+    blurred_image = np.abs(ifft2(blurred_image))
+    blurred_image = np.clip(blurred_image, 0, 255).astype(np.uint8)
+    return blurred_image
 
-    # Pad kernel to match image size
-    pad_kernel = np.zeros(img_shape)
-    pad_kernel[:size, :size] = kernel
-
-    # Shift kernel so center is at (0,0) in frequency domain
-    pad_kernel = fftshift(pad_kernel)
-
-    return pad_kernel
-
-def apply_motion_blur_fft(image, kernel):
-    """Applies motion blur using FFT-based multiplication."""
-    image_fft = fft2(image)
-    kernel_fft = fft2(kernel, s=image.shape)
-    blurred_fft = image_fft * kernel_fft
-    blurred = np.abs(ifft2(blurred_fft))
-    
-    return np.clip(blurred, 0, 255).astype(np.uint8)
-
-def wiener_deconvolution(blurred, kernel, K=0.01):
-    """Performs Wiener deconvolution using FFT."""
-    blurred_fft = fft2(blurred)
-    kernel_fft = fft2(kernel, s=blurred.shape)
-    
-    kernel_fft = np.where(kernel_fft == 0, 1e-8, kernel_fft)  # Avoid division by zero
-    restored_fft = blurred_fft / kernel_fft * (np.abs(kernel_fft)**2 / (np.abs(kernel_fft)**2 + K))
-    restored = np.abs(ifft2(restored_fft))
-    
-    return np.clip(restored, 0, 255).astype(np.uint8)
-
-# Load image
-image = Image.open("license_plate.jpg").convert("L")  # Convert to grayscale
-image = np.array(image)
+def apply_deconvolution(image, kernel, K=0.01):
+    # Convert the image and the kernel to frequency domain
+    fft_image = fft2(image)
+    fft_kernel = fft2(kernel, s=image.shape)
+    # Replace 0 values with a small value before division
+    fft_kernel = np.where(fft_kernel == 0, 1e-8, fft_kernel)
+    # Perform deconvolution in frequency domain (division)
+    restored_image = fft_image / fft_kernel * (np.abs(fft_kernel) ** 2 / (np.abs(fft_kernel) ** 2 + K))
+    # Convert restored image back to spatial domain
+    restored_image = np.abs(ifft2(restored_image))
+    restored_image = np.clip(restored_image, 0, 255).astype(np.uint8)
+    return restored_image
 
 # Create motion blur kernel
-kernel_size = 15
-angle = 30
-kernel = motion_blur_kernel(kernel_size, angle, image.shape)
-
+kernel = build_blur_kernel(size = 15, angle = 30, img_shape = data.shape)
 # Apply motion blur using FFT
-blurred = apply_motion_blur_fft(image, kernel)
+blurred_image = apply_blur_fft(image = data, kernel = kernel)
+# Apply deconvolution
+restored = apply_deconvolution(image = blurred_image, kernel = kernel)
 
-# Apply Wiener deconvolution
-restored = wiener_deconvolution(blurred, kernel)
-
-# Save results
-Image.fromarray(blurred).save("blurred_fft.jpg")
-Image.fromarray(restored).save("restored_fft.jpg")
-
-# Show results
+# Display images
 fig, ax = plt.subplots(1, 3, figsize=(12, 4))
-ax[0].imshow(image, cmap="gray")
-ax[0].set_title("Original")
-ax[1].imshow(blurred, cmap="gray")
-ax[1].set_title("Blurred (FFT)")
+ax[0].imshow(data, cmap="gray")
+ax[0].set_title("Original Image")
+ax[0].axis("off")
+ax[1].imshow(blurred_image, cmap="gray")
+ax[1].set_title("Blurred Image")
+ax[1].axis("off")
 ax[2].imshow(restored, cmap="gray")
-ax[2].set_title("Restored (FFT)")
-for a in ax:
-    a.axis("off")
+ax[2].set_title("Restored Image")
+ax[2].axis("off")
 plt.show()

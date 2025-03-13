@@ -9,7 +9,7 @@ from skimage.draw import circle_perimeter
 # L. Antonelli, F. Polverino, A. Albu, A. Hada, I.A. Asteriti, F. Degrassi, G. Guarguaglini, L. Maddalena, M.R. Guarracino, 
 # ALFI: Cell cycle phenotype annotations of label-free time-lapse imaging data from cultured human cells, Scientific Data 10(677), 2023
 # (Image: I_TP03_0014)
-image = Image.open("resources/cells.jpg").convert("L")
+image = Image.open("path-to-resources/cells.jpg").convert("L")
 
 # Convert image to a NumPy array
 data = np.array(image, dtype = np.uint8)

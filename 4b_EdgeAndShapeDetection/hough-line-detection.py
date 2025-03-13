@@ -5,7 +5,7 @@ from skimage.feature import canny
 from skimage.transform import hough_line, hough_line_peaks
 
 # Open the image using PIL
-image = Image.open("resources/cone.jpg").convert("L")
+image = Image.open("path-to-resources/cone.jpg").convert("L")
 
 # Convert image to a NumPy array
 data = np.array(image, dtype = np.uint8)

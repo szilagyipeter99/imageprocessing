@@ -27,7 +27,7 @@ final_image = np.zeros_like(data)
 
 # Draw the circles
 for center_y, center_x, radius in zip(cy, cx, rs):
-    circy, circx = circle_perimeter(center_y, center_x, radius, shape=data.shape)
+    circy, circx = circle_perimeter(center_y, center_x, radius, shape = data.shape)
     final_image[circy, circx] = 255
 
 # Display images

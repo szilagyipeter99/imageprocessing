@@ -20,7 +20,7 @@ edges = canny(data, sigma = 0.5)
 # Create test circles and compute their Hough transform
 test_rs = np.arange(40, 60, 2)
 hough_result = hough_circle(edges, test_rs)
-accums, cx, cy, rs = hough_circle_peaks(hough_result, test_rs, total_num_peaks = 10)
+_, cx, cy, rs = hough_circle_peaks(hough_result, test_rs, total_num_peaks = 10)
 
 # Empty image to draw circles into
 final_image = np.zeros_like(data)

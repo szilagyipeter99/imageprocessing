@@ -25,7 +25,7 @@ input("Press Enter to continue...")
 print("\n--- Section 2: Displaying Images with Matplotlib ---")
 
 image_data = np.random.rand(10, 10)  # 10x10 random image
-plt.imshow(image_data, cmap='gray')  # Display in grayscale
+plt.imshow(image_data, cmap = 'gray')  # Display in grayscale
 plt.title("Random Grayscale Image")
 plt.colorbar()  # Add a colorbar
 plt.show()
@@ -63,7 +63,7 @@ print("\n--- Section 4: Customizing Plots ---")
 
 x = np.linspace(0, 10, 100)
 y = np.exp(-x / 3) * np.sin(2 * np.pi * x)
-plt.plot(x, y, color='red', linestyle='--', marker='o', label='Damped Sine') 
+plt.plot(x, y, color = 'red', linestyle = '--', marker = 'o', label = 'Damped Sine') 
 plt.title("Damped Sine Wave")
 plt.xlabel("Time (s)")
 plt.ylabel("Amplitude")

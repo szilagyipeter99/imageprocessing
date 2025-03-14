@@ -9,11 +9,9 @@ image = Image.open("path-to-resources/wrench.png").convert("L")
 data = np.array(image, dtype=np.uint8)
 
 # Apply thresholding
+# Convert image from [0, 255] to {0, 1} (Normalize)
 threshold = 135
-data = np.where(data > threshold, 255, 0)
-
-# Convert image from {0, 255} to {0, 1} (Normalize)
-data = data / 255
+data = np.where(data > threshold, 1, 0)
 
 # Helper arrays to calculate the center
 x_range = np.arange(0, data.shape[1])

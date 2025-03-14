@@ -17,13 +17,11 @@ for filename in sorted(os.listdir(folder_path)):
         image = Image.open(image_path).convert("L")
 
         # Convert image to a NumPy array
-        data = np.array(image, dtype=np.uint8)
+        data = np.array(image, dtype = np.uint8)
 
         # Apply thresholding
-        data = np.where(data > threshold, 255, 0)
-
-        # Convert image from {0, 255} to {0, 1} for center calculation
-        data = data / 255
+        # Convert image from [0, 255] to {0, 1}
+        data = np.where(data > threshold, 1, 0)
 
         # Helper arrays to calculate the center
         x_range = np.arange(0, data.shape[1])
@@ -41,7 +39,7 @@ for filename in sorted(os.listdir(folder_path)):
         # Centered array
         cntr_coords = coords - (x_cntr, y_cntr)
         # Covariance matrix
-        cov_matrix = np.cov(cntr_coords, rowvar=False)
+        cov_matrix = np.cov(cntr_coords, rowvar = False)
         # Eigen value decomposition (EVD) to find the principal components
         eig_vals, eig_vecs = np.linalg.eigh(cov_matrix)
         # Eigenvector corresponding to the largest eigenvalue
@@ -56,9 +54,9 @@ for filename in sorted(os.listdir(folder_path)):
 
         # Display the image
         plt.figure(1); plt.clf() # This is needed to refresh the image
-        plt.imshow(image, cmap="gray")
-        plt.plot(x_line, y_line, color="red", linewidth=3)  # Draw a red line on the image
-        plt.plot(x_cntr, y_cntr, "og", markersize=5)  # Mark center with green circle
+        plt.imshow(image, cmap = "gray")
+        plt.plot(x_line, y_line, color = "red", linewidth = 3)  # Draw a red line on the image
+        plt.plot(x_cntr, y_cntr, "og", markersize = 5)  # Mark center with a green dot
         plt.title(f"Orientation of {filename}")
         plt.axis('off')  # Hide the axis
         plt.pause(.033)  # This is needed to refresh the image

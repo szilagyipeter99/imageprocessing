@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 image = Image.open("path-to-resources/boglarka.jpg")
 
 # Convert image to a NumPy array
-data = np.array(image, dtype=np.uint8)
+data = np.array(image, dtype = np.uint8)
 print(data.shape)  # (height, width, channels)
 
 # Set brightness and contrast

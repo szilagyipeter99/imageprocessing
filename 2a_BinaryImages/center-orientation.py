@@ -6,10 +6,10 @@ import matplotlib.pyplot as plt
 image = Image.open("path-to-resources/wrench.png").convert("L")
 
 # Convert image to a NumPy array
-data = np.array(image, dtype=np.uint8)
+data = np.array(image, dtype = np.uint8)
 
 # Apply thresholding
-# Convert image from [0, 255] to {0, 1} (Normalize)
+# Convert image from [0, 255] to {0, 1}
 threshold = 135
 data = np.where(data > threshold, 1, 0)
 
@@ -44,8 +44,8 @@ y_line = [y_cntr - half_len * np.sin(orientation), y_cntr + half_len  * np.sin(o
 
 # Display the image
 plt.imshow(data, cmap="gray")
-plt.plot(x_line, y_line, color="red", linewidth=3)  # Draw a red line on the image
-plt.plot(x_cntr, y_cntr, "og", markersize=5)  # Mark center with green circle
+plt.plot(x_line, y_line, color = "red", linewidth = 3)  # Draw a red line on the image
+plt.plot(x_cntr, y_cntr, "og", markersize = 5)  # Mark center with a green dot
 plt.title("Center and orientation")
 plt.axis('off')  # Hide the axis
 plt.show()

@@ -24,7 +24,7 @@ y_cntr = np.matmul(data.T, y_range).sum() / data.sum()
 
 # Display the image
 plt.imshow(data, cmap = "gray")
-plt.plot(x_cntr, y_cntr, "og", markersize = 5)  # Mark center with green circle
+plt.plot(x_cntr, y_cntr, "og", markersize = 5)  # Mark center with a green dot
 plt.title("Center point")
 plt.axis('off')
 plt.show()

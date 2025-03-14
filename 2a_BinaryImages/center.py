@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 image = Image.open("path-to-resources/wrench.png").convert("L")
 
 # Convert image to a NumPy array
-data = np.array(image, dtype=np.uint8)
+data = np.array(image, dtype = np.uint8)
 
 # Apply thresholding
 threshold = 135
@@ -25,8 +25,8 @@ x_cntr = np.matmul(data, x_range).sum() / data.sum()
 y_cntr = np.matmul(data.T, y_range).sum() / data.sum()
 
 # Display the image
-plt.imshow(data, cmap="gray")
-plt.plot(x_cntr, y_cntr, "og", markersize=5)  # Mark center with green circle
+plt.imshow(data, cmap = "gray")
+plt.plot(x_cntr, y_cntr, "og", markersize = 5)  # Mark center with green circle
 plt.title("Center point")
-plt.axis('off')  # Hide the axis
+plt.axis('off')
 plt.show()

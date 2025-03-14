@@ -7,7 +7,7 @@ from skimage.morphology import  opening, closing
 image = Image.open("path-to-resources/noisy-gears.jpeg").convert("L")
 
 # Convert image to a NumPy array
-data = np.array(image, dtype=np.uint8)
+data = np.array(image, dtype = np.uint8)
 
 # Apply thresholding
 threshold = 128
@@ -19,7 +19,7 @@ custom_footprint = np.array([[1, 1, 1, 1, 1, 1, 1],
                              [1, 1, 1, 1, 1, 1, 1],
                              [1, 1, 1, 1, 1, 1, 1],
                              [1, 1, 1, 1, 1, 1, 1],
-                             [1, 1, 1, 1, 1, 1, 1]], dtype=np.uint8)
+                             [1, 1, 1, 1, 1, 1, 1]], dtype = np.uint8)
 
 # Perform an erosion followed by a dilation 
 opened_image = opening(data, custom_footprint)
@@ -27,11 +27,12 @@ opened_image = opening(data, custom_footprint)
 closed_image = closing(data, custom_footprint)
 
 # Display images
-fig, ax = plt.subplots(1, 2, figsize=(12, 6))
-ax[0].imshow(opened_image, cmap="gray")
+fig, ax = plt.subplots(1, 2, figsize = (12, 6))
+ax[0].imshow(opened_image, cmap = "gray")
 ax[0].set_title("Opened Image")
 ax[0].axis("off")
-ax[1].imshow(closed_image, cmap="gray")
+ax[1].imshow(closed_image, cmap = "gray")
 ax[1].set_title("Closed Image")
 ax[1].axis("off")
+plt.tight_layout()
 plt.show()

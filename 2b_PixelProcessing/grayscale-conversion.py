@@ -2,11 +2,11 @@ from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Open the image using PIL and ensure the correct (RGB) color mode
+# Open the image using PIL and ensure the correct (RGB) color mode is used
 image = Image.open("path-to-resources/boglarka.jpg").convert("RGB")
 
 # Convert image to a NumPy array
-data = np.array(image, dtype=np.uint8)
+data = np.array(image, dtype = np.uint8)
 print(data.shape)  # (height, width, channels)
 
 # RGB array for the conversion (Rec.709 standard)

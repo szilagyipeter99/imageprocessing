@@ -29,7 +29,7 @@ coords = np.column_stack((x, y))
 # Centered array
 cntr_coords = coords - (x_cntr, y_cntr)
 # Covariance matrix
-cov_matrix = np.cov(cntr_coords, rowvar=False)
+cov_matrix = np.cov(cntr_coords, rowvar = False)
 # Eigen value decomposition (EVD) to find the principal components
 eig_vals, eig_vecs = np.linalg.eigh(cov_matrix)
 # Eigenvector corresponding to the largest eigenvalue

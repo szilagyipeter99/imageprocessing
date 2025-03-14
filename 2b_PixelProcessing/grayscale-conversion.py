@@ -16,6 +16,6 @@ conv_arr = [0.2126, 0.7152, 0.0722] # R, G, B
 final_image = np.dot(data, conv_arr).astype(np.uint8)
 
 # Display the image
-plt.imshow(final_image, cmap="gray")
+plt.imshow(final_image, cmap = "gray")
 plt.axis('off')
 plt.show()

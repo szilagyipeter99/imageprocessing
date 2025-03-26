@@ -41,4 +41,4 @@ print("Test loss:", score[0])
 print("Test accuracy:", score[1])
 
 # Save the model in a '.keras' file
-model.save('mnist_binary_classifier.keras')
+model.save('mnist_full_classifier.keras')

@@ -27,8 +27,8 @@ test_image_paths = [os.path.join(test_folder, fname) for fname in os.listdir(tes
 
 # Loop through each image, preprocess, predict, and display the result
 plt.figure(figsize=(10, 5))
-for i, img_path in enumerate(test_image_paths[:10]): 
-    test_image, test_image_prep = preprocess_image(img_path)
+for i in range(10): 
+    test_image, test_image_prep = preprocess_image(test_image_paths[i])
     prediction = model.predict(test_image_prep)[0][0]
     predicted_class = class_2 if prediction > 0.5 else class_1
     confidence = prediction if prediction > 0.5 else 1 - prediction

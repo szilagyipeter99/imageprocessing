@@ -30,7 +30,7 @@ for i in range(len(test_image_paths)):
     fix, ax = plt.subplots(1, 2, figsize = (12, 6))
     ax[0].imshow(test_image, cmap="gray")
     ax[0].axis('off')
-    ax[0].set_title("Image X")
+    ax[0].set_title("Image")
     ax[1].bar(np.arange(0, 10), model.predict(test_image_prep)[0])
     ax[1].set_xticks(np.arange(0, 10))
     ax[1].set_xticklabels(class_names)

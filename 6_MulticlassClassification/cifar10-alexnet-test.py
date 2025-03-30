@@ -33,7 +33,7 @@ def preprocess_image(img_path):
     return img, img_data
 
 # Get a list of all image files in the folder
-test_image_paths = [os.path.join(test_folder, fname) for fname in os.listdir(test_folder) if fname.endswith(('.jpg', '.webp'))]
+test_image_paths = [os.path.join(test_folder, fname) for fname in os.listdir(test_folder) if fname.endswith(('.jpg', '.jpeg', '.png', '.webp'))]
 
 # Loop through each image, preprocess, predict, and display the result (probabality distribution)
 for i in range(len(test_image_paths)):

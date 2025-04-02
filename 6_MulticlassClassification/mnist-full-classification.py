@@ -2,7 +2,7 @@ from keras import utils, layers, Sequential
 import matplotlib.pyplot as plt
 
 # Load and preprocess images
-data_dir = "resources/mnist-full/train"
+data_dir = "path-to-resources/mnist-full/train"
 train_data, val_data = utils.image_dataset_from_directory(
     data_dir,
     labels = "inferred",

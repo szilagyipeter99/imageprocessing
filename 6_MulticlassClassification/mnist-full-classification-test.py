@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 # Load the saved model
 model = models.load_model('mnist_full_classifier.keras')
 
-test_folder = 'resources/mnist-full/test'
+test_folder = 'path-to-resources/mnist-full/test'
 
 # Define the list of classes
 class_names = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]

@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 # Load the saved model
 model = models.load_model('cifar10_alexnet.keras')
 
-test_folder = 'resources/cifar10-alexnet-test/'
+test_folder = 'path-to-resources/cifar10-alexnet-test/'
 
 # Define the list of classes
 class_names = [

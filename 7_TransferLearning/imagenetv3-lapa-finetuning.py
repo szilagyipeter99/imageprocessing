@@ -58,4 +58,4 @@ val_ds = create_dataset(f"{dataset_folder}/val/images", f"{dataset_folder}/val/l
 
 model.fit(train_ds, validation_data=val_ds, steps_per_epoch=568, validation_steps=63, epochs=25)
 
-model.save('mobilenetv2_lapa.keras')
+model.save('mobilenetv3_lapa.keras')

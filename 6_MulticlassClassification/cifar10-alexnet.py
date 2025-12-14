@@ -1,4 +1,4 @@
-from keras import datasets, utils, layers, Sequential
+from keras import datasets, utils, layers, Sequential, optimizers
 import matplotlib.pyplot as plt
 
 # Load CIFAR-10 dataset

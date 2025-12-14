@@ -43,7 +43,7 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
 model.summary()
 
 # Train the model
-history = model.fit(x_train, y_train, epochs = 10, batch_size = 128, validation_data=(x_val, y_val))
+history = model.fit(x_train, y_train, epochs = 30, batch_size = 128, validation_data=(x_val, y_val))
 
 # Evaluate the trained model
 score = model.evaluate(x_val, y_val, verbose=0)

@@ -22,11 +22,13 @@ data_augmentation = Sequential([
 model = Sequential([
     layers.Input(shape=(32, 32, 3)), # CIFAR-10 images are 32x32
     data_augmentation,
-    layers.Conv2D(96, kernel_size = (3, 3), padding='same', activation = 'relu'),
+    layers.Conv2D(96, kernel_size = (3, 3), padding='same', activation = 'none'),
     layers.BatchNormalization(),
+    layers.Activation('relu'),
     layers.MaxPooling2D(pool_size = (2, 2), strides = 2),
-    layers.Conv2D(256, kernel_size = (3, 3), padding='same', activation='relu'),
+    layers.Conv2D(256, kernel_size = (3, 3), padding='same', activation='none'),
     layers.BatchNormalization(),
+    layers.Activation('relu'),
     layers.MaxPooling2D(pool_size = (2, 2), strides = 2),
     layers.Conv2D(384, kernel_size = (3, 3), padding='same', activation='relu'),
     layers.Conv2D(384, kernel_size = (3, 3), padding='same', activation='relu'),

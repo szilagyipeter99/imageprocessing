@@ -39,7 +39,9 @@ model = Sequential([
     layers.Dropout(0.5),
     layers.Dense(10, activation='softmax') # CIFAR-10 has 10 classes
 ])
-model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+# Stochastic Gradient Descent optimizer
+optimizer = optimizers.SGD(learning_rate=0.01, momentum=0.9, nesterov=True)
+model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
 model.summary()
 
 # Train the model

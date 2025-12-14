@@ -53,7 +53,7 @@ print("Test loss:", score[0])
 print("Test accuracy:", score[1])
 
 # Save the model
-model.save('cifar10_alexnet.keras')
+model.save('cifar10_cnn.keras')
 
 # Plot accuracy and loss for both training and validation
 fig, ax = plt.subplots(1, 2, figsize=(12, 6))

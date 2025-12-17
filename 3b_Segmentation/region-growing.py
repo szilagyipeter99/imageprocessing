@@ -8,9 +8,9 @@ import matplotlib.pyplot as plt
 image = Image.open("path-to-resources/chest-tube.jpg").convert("RGB")
 
 # Convert image to a NumPy array
-data = np.array(image, dtype=np.uint8)
+data = np.array(image, dtype = np.uint8)
 # Create a grayscale version, as well
-grayscale_data = np.array(image.convert("L"), dtype=np.uint8)
+grayscale_data = np.array(image.convert("L"), dtype = np.uint8)
 
 seed_points = [[135,235],
                [360,215],

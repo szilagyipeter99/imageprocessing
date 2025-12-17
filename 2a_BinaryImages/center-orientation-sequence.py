@@ -58,5 +58,5 @@ for filename in sorted(os.listdir(folder_path)):
         plt.plot(x_line, y_line, color = "red", linewidth = 3)  # Draw a red line on the image
         plt.plot(x_cntr, y_cntr, "og", markersize = 5)  # Mark center with a green dot
         plt.title(f"Orientation of {filename}")
-        plt.axis('off')  # Hide the axis
+        plt.axis('off')
         plt.pause(.033)  # This is needed to refresh the image

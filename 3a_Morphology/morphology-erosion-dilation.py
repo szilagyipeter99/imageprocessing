@@ -19,7 +19,7 @@ custom_footprint = np.array([[1, 1, 1, 1, 1, 1, 1],
                              [1, 1, 1, 1, 1, 1, 1],
                              [1, 1, 1, 1, 1, 1, 1],
                              [1, 1, 1, 1, 1, 1, 1],
-                             [1, 1, 1, 1, 1, 1, 1]], dtype=np.uint8)
+                             [1, 1, 1, 1, 1, 1, 1]], dtype = np.uint8)
 
 # Set pixels to the minimum in their neighborhood
 eroded_image = erosion(data, custom_footprint)
@@ -27,7 +27,7 @@ eroded_image = erosion(data, custom_footprint)
 dilated_image = dilation(data, custom_footprint)
 
 # Display images
-fig, ax = plt.subplots(1, 2, figsize=(12, 6))
+fig, ax = plt.subplots(1, 2, figsize = (12, 6))
 ax[0].imshow(eroded_image, cmap = "gray")
 ax[0].set_title("Eroded Image")
 ax[0].axis("off")

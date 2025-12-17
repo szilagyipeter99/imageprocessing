@@ -33,9 +33,9 @@ filters = [
     ("Wavelet", denoised_image_wl),
     ("Non-local means", denoised_image_nlm)
 ]
-fig, axes = plt.subplots(2, 3, figsize=(12, 8))
+fig, axes = plt.subplots(2, 3, figsize = (12, 8))
 for ax, (title, img) in zip(axes.ravel(), filters):
-    ax.imshow(img, cmap="gray")
+    ax.imshow(img, cmap = "gray")
     ax.set_title(title)
     ax.axis("off")
 plt.tight_layout()

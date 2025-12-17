@@ -40,7 +40,7 @@ orientation = np.arctan2(pr_eig_vec[1], pr_eig_vec[0])
 # Start and End point for the orientation line
 half_len = 500
 x_line = [x_cntr - half_len * np.cos(orientation), x_cntr + half_len * np.cos(orientation)]
-y_line = [y_cntr - half_len * np.sin(orientation), y_cntr + half_len  * np.sin(orientation)]
+y_line = [y_cntr - half_len * np.sin(orientation), y_cntr + half_len * np.sin(orientation)]
 
 # Display the image
 plt.imshow(data, cmap="gray")

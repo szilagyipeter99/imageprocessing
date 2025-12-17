@@ -90,7 +90,7 @@ print("Last row:", image_grid[-1])
 print("All pixel values in the grid:")
 for row in image_grid:
     for pixel in row:
-        print(pixel, end=" ")
+        print(pixel, end = " ")
     print()
 
 input("Press Enter to continue...")

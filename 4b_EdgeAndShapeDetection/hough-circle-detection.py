@@ -31,7 +31,7 @@ for center_y, center_x, radius in zip(cy, cx, rs):
     final_image[circy, circx] = 255
 
 # Display images
-fig, ax = plt.subplots(1, 2, figsize=(12, 6))
+fig, ax = plt.subplots(1, 2, figsize = (12, 6))
 ax[0].imshow(data, cmap = "gray")
 ax[0].set_title("Original Image")
 ax[0].axis("off")

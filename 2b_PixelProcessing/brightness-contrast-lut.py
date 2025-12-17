@@ -38,7 +38,7 @@ print(f"Basic method: {round((end2 - start2) * 1000, 3)}ms")
 print(f"Using a LUT: {round((end1 - start1) * 1000, 3)}ms")
 
 # Display images
-fig, ax = plt.subplots(1, 2, figsize=(12, 6))
+fig, ax = plt.subplots(1, 2, figsize = (12, 6))
 ax[0].imshow(final_image1, cmap = "gray")
 ax[0].set_title("LUT-applied Image")
 ax[0].axis("off")

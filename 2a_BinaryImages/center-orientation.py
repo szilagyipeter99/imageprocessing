@@ -47,5 +47,5 @@ plt.imshow(data, cmap="gray")
 plt.plot(x_line, y_line, color = "red", linewidth = 3)  # Draw a red line on the image
 plt.plot(x_cntr, y_cntr, "og", markersize = 5)  # Mark center with a green dot
 plt.title("Center and orientation")
-plt.axis('off')  # Hide the axis
+plt.axis('off')
 plt.show()

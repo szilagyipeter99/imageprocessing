@@ -50,7 +50,7 @@ for filename in sorted(os.listdir(folder_path)):
         # Start and end point for the orientation line
         half_len = 300
         x_line = [x_cntr - half_len * np.cos(orientation), x_cntr + half_len * np.cos(orientation)]
-        y_line = [y_cntr - half_len * np.sin(orientation), y_cntr + half_len  * np.sin(orientation)]
+        y_line = [y_cntr - half_len * np.sin(orientation), y_cntr + half_len * np.sin(orientation)]
 
         # Display the image
         plt.figure(1); plt.clf() # This is needed to refresh the image

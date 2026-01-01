@@ -27,9 +27,9 @@ class_names = [
 def preprocess_image(img_path):
     img = Image.open(img_path).convert("RGB")
     img = img.resize((32, 32))
-    img_data = np.array(img, dtype=np.uint8)
+    img_data = np.array(img, dtype = np.uint8)
     img_data = img_data / 255.0  # Normalize pixel values
-    img_data = np.expand_dims(img_data, axis=0)  # Add a new axis at the 0th position (batch)
+    img_data = np.expand_dims(img_data, axis = 0)  # Add a new axis at the 0th position (batch)
     return img, img_data
 
 # Get a list of all image files in the folder

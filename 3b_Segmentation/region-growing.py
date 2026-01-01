@@ -45,16 +45,16 @@ for p in range(len(seed_points)):
                 # Change the data type for proper subtraction
                 neighbor_val = neighbor_val.astype(np.int16)
                 # The point has not been visited and is similar to its neighbor
-                if (visited_points[j][i] == 0 and abs(neighbor_val - im_val) < tolerance / 100 * 255 ):
+                if (visited_points[j][i] == 0 and abs(neighbor_val - im_val) < tolerance / 100 * 255):
                     # LIFO method
-                    temp_list.append([i,j])
+                    temp_list.append([i, j])
 
 # Display the image
 plt.imshow(segmented_image)
 # Mark seed points
-plt.plot(seed_points[0][0], seed_points[0][1], "ow", markersize=5)
-plt.plot(seed_points[1][0], seed_points[1][1], "ow", markersize=5)
-plt.plot(seed_points[2][0], seed_points[2][1], "ow", markersize=5)
+plt.plot(seed_points[0][0], seed_points[0][1], "ow", markersize = 5)
+plt.plot(seed_points[1][0], seed_points[1][1], "ow", markersize = 5)
+plt.plot(seed_points[2][0], seed_points[2][1], "ow", markersize = 5)
 plt.title("Center point")
 plt.axis('off')
 plt.show()   

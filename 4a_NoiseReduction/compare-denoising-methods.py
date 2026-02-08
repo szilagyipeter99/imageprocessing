@@ -5,7 +5,7 @@ from skimage.filters import median
 from skimage.restoration import denoise_bilateral, denoise_tv_chambolle, denoise_wavelet, denoise_nl_means
 
 # Open the image using PIL
-image = Image.open("path-to-resources/noisy-items.png").convert("L")
+image = Image.open("path-to-resources/noisy-items-?").convert("L")
 
 # Convert image to a NumPy array
 data = np.array(image, dtype = np.uint8)

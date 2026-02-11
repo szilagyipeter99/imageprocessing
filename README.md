@@ -13,6 +13,10 @@ Throughout the examples, we use several Python libraries that extend the functio
 - SciPy
 - Keras (+ TensorFlow)
 
+### `Activate.ps1` error on Windows 11:
+
+Open PowerShell and execute the `set-executionpolicy -scope currentuser remotesigned` command
+
 ### Recommended folder structure:
 
 ```bash

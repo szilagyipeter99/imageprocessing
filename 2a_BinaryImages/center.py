@@ -19,8 +19,8 @@ y_range = np.arange(0, data.shape[0])
 
 # Calculate area and center
 area = data.sum()
-x_cntr = np.matmul(data, x_range).sum() / data.sum()
-y_cntr = np.matmul(data.T, y_range).sum() / data.sum()
+x_cntr = np.matmul(data, x_range).sum() / area
+y_cntr = np.matmul(data.T, y_range).sum() / area
 
 # Display the image
 plt.imshow(data, cmap = "gray")

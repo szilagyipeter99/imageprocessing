@@ -57,6 +57,7 @@ for root_dir, _, files in os.walk(ANNOTATION_DIR):
         })
 
 # Load the dataset
+# (Limitation: There are 100+ classes of dog breeds and the dataset is not split class by class)
 train_ann, val_ann = train_test_split(annotations, test_size = 0.2)
 train_gen = DogGen(train_ann)
 val_gen = DogGen(val_ann)

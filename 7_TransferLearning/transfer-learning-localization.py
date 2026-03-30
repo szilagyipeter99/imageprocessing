@@ -49,14 +49,15 @@ for root_dir, _, files in os.walk(ANNOTATION_DIR):
         filename = root.find("filename").text
         folder = root.find("folder").text
         img_path = os.path.join(IMAGE_DIR, folder, filename)
-        img = Image.open(img_path)
-        width, height = img.size
+        size = root.find("size")
+        width = int(size.find("width").text)
+        height = int(size.find("height").text)
         annotations.append({
             "path": img_path,
             "bbox": [xmin / width, ymin / height, xmax / width, ymax / height]
         })
 
-# Load the dataset
+# Load the dataset 
 # (Limitation: There are 100+ classes of dog breeds and the dataset is not split class by class)
 train_ann, val_ann = train_test_split(annotations, test_size = 0.2)
 train_gen = DogGen(train_ann)
@@ -88,7 +89,7 @@ model = Sequential([
 model.compile(optimizer = "adam", loss = losses.Huber())
 model.summary()
 print("\n--- Training the head: ---")
-model.fit(train_gen, validation_data = val_gen, epochs = 1, batch_size = 16)
+model.fit(train_gen, validation_data = val_gen, epochs = 1)
 
 # Enable training for the last 30 layers of the backbone
 for layer in base_model.layers[-30:]:
@@ -97,6 +98,6 @@ for layer in base_model.layers[-30:]:
 # Finetune the model for 3 epochs
 model.compile(optimizer = optimizers.Adam(1e-5), loss = losses.Huber())
 print("\n--- Finetuning the model: ---")
-model.fit(train_gen, validation_data = val_gen, epochs = 3, batch_size = 16)
+model.fit(train_gen, validation_data = val_gen, epochs = 3)
 
 model.save("dog_localization.keras")
